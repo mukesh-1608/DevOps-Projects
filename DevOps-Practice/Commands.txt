@@ -1,0 +1,89 @@
+1.Start Minikube
+Command:
+
+powershell
+minikube start
+
+Explanation:
+This command initializes and starts a local Kubernetes cluster using Minikube. It sets up everything needed to run Kubernetes on your computer.
+
+2. Set Up Docker Environment for Minikube
+Command:
+
+powershell
+minikube docker-env | Invoke-Expression
+
+Explanation:
+This command configures your shell so that Docker commands use Minikube’s Docker environment. This is necessary so that images you build are available to your local Kubernetes cluster.
+
+3. Build Docker Image
+Command:
+
+powershell
+docker build -t hello-app:latest .
+
+Explanation:
+This command builds a Docker image from your app and the Dockerfile in the current directory. The -t hello-app:latest flag tags the image with the name hello-app and the tag latest.
+
+4. Change Directory (if needed)
+Command:
+
+powershell
+cd D:\DevOps-Practice\Task2
+
+Explanation:
+This navigates you to the directory containing your app, Dockerfile, and Kubernetes manifests. It ensures that your commands (like docker build) run in the correct folder.
+
+5. Deploy App to Kubernetes
+Command:
+
+powershell
+kubectl apply -f deployment.yaml
+
+Explanation:
+This command tells Kubernetes to deploy your application using the instructions in the deployment.yaml file. It creates pods that run your app.
+
+6. Expose App as a Service
+Command:
+
+powershell
+kubectl apply -f service.yaml
+
+Explanation:
+This command tells Kubernetes to create a service for your app, making it accessible from outside the cluster. The service.yaml file defines how your app is exposed.
+
+7. Check Pod Status
+Command:
+
+powershell
+kubectl get pods
+
+Explanation:
+This command lists all the pods running in your cluster. It shows their status (e.g., Running, ContainerCreating) and helps you check if your app is up and running.
+
+8. Check Service Status
+Command:
+
+powershell
+kubectl get services
+
+Explanation:
+This command lists all the services in your cluster. It shows how your app is exposed (e.g., NodePort, ClusterIP) and the port numbers.
+
+9. Access Your Application
+Command:
+
+powershell
+minikube service hello-app-service
+
+Explanation:
+This command opens your browser to the external URL of your service, allowing you to access your app from your local machine.
+
+10. (Optional) Check Pod Logs
+Command:
+
+powershell
+kubectl logs hello-app-6f6c5454d9-4962j
+
+Explanation:
+This command displays the logs for a specific pod. It helps you debug your app if something goes wrong.
